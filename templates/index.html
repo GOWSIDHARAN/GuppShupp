@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Personality System</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">AI Personality System</h1>
+            <p class="text-gray-600">Upload chat messages and see how different personalities respond</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Left Column: Message Input -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">1. Enter Chat Messages</h2>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="chat-messages">
+                        Paste chat messages (one per line):
+                    </label>
+                    <textarea 
+                        id="chat-messages" 
+                        class="w-full h-64 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="User: Hello! I love coffee and coding!&#10;User: I'm a software engineer from India.&#10;User: I get really excited about learning new technologies!"
+                    ></textarea>
+                </div>
+                <button 
+                    id="analyze-btn" 
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                    Analyze Messages
+                </button>
+            </div>
+
+            <!-- Right Column: Personality Selection -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">2. Select Personality</h2>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">
+                        Choose a personality:
+                    </label>
+                    <select id="personality-select" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="mentor">🎓 Calm Mentor</option>
+                        <option value="friend">😂 Witty Friend</option>
+                        <option value="therapist">🧠 Empathetic Therapist</option>
+                        <option value="professional" selected>🤖 Professional Assistant</option>
+                    </select>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">
+                        Extracted Memory:
+                    </label>
+                    <div id="memory-display" class="bg-gray-50 p-3 rounded border text-sm text-gray-700 h-40 overflow-auto">
+                        Memory data will appear here after analysis
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Response Area -->
+        <div class="mt-8 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-4">3. Test the Personality</h2>
+            <div class="flex mb-4">
+                <input 
+                    type="text" 
+                    id="user-message" 
+                    class="flex-grow p-2 border rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Type a message to test the personality..."
+                >
+                <button 
+                    id="send-btn" 
+                    class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:ring-2 focus:ring-green-500"
+                    disabled
+                >
+                    Send
+                </button>
+            </div>
+            <div class="border rounded p-4 bg-gray-50 min-h-32 mb-6">
+                <div id="chat-display" class="space-y-2">
+                    <p class="text-gray-500 italic">Response will appear here...</p>
+                </div>
+            </div>
+
+            <!-- Personality Comparison -->
+            <div class="mt-4 border-t pt-4">
+                <h3 class="text-lg font-semibold mb-2">4. Compare Personalities</h3>
+                <p class="text-sm text-gray-600 mb-3">
+                    Use the same message to see how different personalities respond compared to a neutral base response.
+                </p>
+                <div class="flex items-center mb-3">
+                    <button 
+                        id="compare-btn" 
+                        class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 mr-3"
+                        disabled
+                    >
+                        Compare Personalities
+                    </button>
+                    <span class="text-xs text-gray-500">(Enabled after memory analysis)</span>
+                </div>
+                <div id="compare-display" class="bg-gray-50 p-3 rounded border text-sm text-gray-700 max-h-72 overflow-auto">
+                    <p class="text-gray-500 italic">Personality comparison results will appear here...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
