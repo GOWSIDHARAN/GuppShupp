@@ -1,10 +1,21 @@
 [phases.setup]
-nixPkgs = ['python311', 'python311Packages.pip']
+nixPkgs = [
+    'python311', 
+    'python311Packages.pip',
+    'python311Packages.virtualenv'
+]
 
 [phases.install]
 cmds = [
-    "pip install -r requirements.txt"
+    "python -m venv /app/venv",
+    "./venv/bin/pip install --upgrade pip setuptools wheel",
+    "./venv/bin/pip install -r requirements.txt"
+]
+
+[phases.build]
+cmds = [
+    "./venv/bin/pip install -r requirements.txt"
 ]
 
 [start]
-cmd = "gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app"
+cmd = "/app/venv/bin/gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app"

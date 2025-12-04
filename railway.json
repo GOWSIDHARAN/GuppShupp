@@ -1,11 +1,10 @@
 {
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
-    "builder": "NIXPACKS",
-    "buildCommand": "pip install -r requirements.txt"
+    "builder": "NIXPACKS"
   },
   "deploy": {
-    "startCommand": "gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app",
+    "startCommand": "/app/venv/bin/gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app",
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
   }
